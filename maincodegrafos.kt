@@ -217,29 +217,3 @@ fun menu() {
         }
     }
 }
-
-// Lista de retos para practicar (los voy anotando mientras estudio)
-fun retos() {
-    println("\nRETOS SUGERIDOS (puedes editar el código y volver a correr):")
-    println("1. Cambia el peso de A->C a 5. ¿Qué pasa con la ruta A->D?")
-    println("2. Agrega un nodo H que vaya desde G con peso 4 y prueba A->H.")
-    println("3. Elimina la arista D->E y observa B->E (¿sigue valiendo 27?).")
-    println("4. Implementa una función que cuente cuántos tramos (saltos) tiene la ruta.")
-    println("5. Añade una arista que cree un ciclo (por ejemplo G->A) y verifica que no se rompe.")
-    println("6. Haz una versión que en lugar de minutos use 'costo' y otra que use 'distancia'.")
-    println("7. Imprime también el 'padre' de cada nodo al final para ver el árbol de caminos mínimos.")
-    println("8. Escribe tu propio código sin mirar este y compara.")
-}
-
-// ---------------------------------------------------------------------------
-// 5. main() - Punto de entrada
-// ---------------------------------------------------------------------------
-fun main() {
-    println("Ejemplo rápido (antes del menú): calcular ruta A -> D")
-    val (dist, padres) = dijkstra(GRAFO, "A")
-    val ruta = reconstruirRuta(padres, "A", "D")
-    println("Ruta A->D: ${ruta?.joinToString(" -> ")} | Tiempo = ${dist["D"]}")
-    println("(Puedes elegir la opción 4 del menú para repasar la explicación.)")
-
-    menu()
-}
