@@ -1,4 +1,3 @@
-
 import java.util.PriorityQueue
 
 // ---------------------------------------------------------------------------
@@ -71,7 +70,8 @@ fun dijkstra(
         if (distActual > distancias[nodo]!!) continue
 
         // Revisar vecinos (aquí ocurre la "relajación")
-        for ((vecino, peso) in grafo[nodo] ?: emptyList()) {
+        val vecinos = grafo[nodo]
+        for ((vecino, peso) in if (vecinos != null) vecinos else emptyList()) {
             val nuevaDist = distActual + peso
             if (verPasos) println("  Vecino $vecino: actual=${distancias[vecino]} nueva=$nuevaDist")
 
@@ -133,9 +133,13 @@ fun mostrarUbicaciones() {
 fun opcionRutaMasCorta() {
     mostrarUbicaciones()
     print("\nOrigen: ")
-    val origen = readLine()?.trim()?.uppercase() ?: return
+    val origenInput = readLine()?.trim()?.uppercase()
+    if (origenInput == null) return
+    val origen = origenInput
     print("Destino: ")
-    val destino = readLine()?.trim()?.uppercase() ?: return
+    val destinoInput = readLine()?.trim()?.uppercase()
+    if (destinoInput == null) return
+    val destino = destinoInput
 
     if (!GRAFO.containsKey(origen) || !GRAFO.containsKey(destino)) {
         println(" Nodo inválido")
@@ -172,7 +176,9 @@ fun opcionRutaMasCorta() {
 fun opcionTodasLasDistancias() {
     mostrarUbicaciones()
     print("\nOrigen: ")
-    val origen = readLine()?.trim()?.uppercase() ?: return
+    val origenInput = readLine()?.trim()?.uppercase()
+    if (origenInput == null) return
+    val origen = origenInput
     if (!GRAFO.containsKey(origen)) {
         println("Nodo inválido")
         return
